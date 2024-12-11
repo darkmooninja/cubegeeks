@@ -74,30 +74,44 @@ def take_photo():
     """
 
 
-    while True:
-        accelx, accely, accelz = accel_gyro.acceleration
-        acceleration = accelx ** 2 + accely ** 2 + accelz ** 2
-        magnitude = acceleration ** (1/2)
+    # while True:
+    #     accelx, accely, accelz = accel_gyro.acceleration
+    #     acceleration = accelx ** 2 + accely ** 2 + accelz ** 2
+    #     magnitude = acceleration ** (1/2)
         
 
-        if magnitude > THRESHOLD:
-            print("SHAKE")
-            picam2.configure(picam2.create_preview_configuration({"format": "RGB888"}))
-            min_exp, max_exp, default_exp = picam2.camera_controls["AfPause"]
+    #     if magnitude > THRESHOLD:
+    #         print("SHAKE")
+    #         picam2.configure(picam2.create_preview_configuration({"format": "RGB888"}))
+    #         min_exp, max_exp, default_exp = picam2.camera_controls["AfPause"]
 
-            name = "Test"
-            photo_name = img_gen(name)
+    #         name = "Test"
+    #         photo_name = img_gen(name)
             
-            picam2.start()
+    #         picam2.start()
 
-            image = picam2.capture_image("main")
-            arr = picam2.capture_array("main")
-            image.save(photo_name)
-            git_push()
-            print("picture done")
-            picam2.stop()
-            return arr
-            
+    #         image = picam2.capture_image("main")
+    #         arr = picam2.capture_array("main")
+    #         image.save(photo_name)
+    #         git_push()
+    #         print("picture done")
+    #         picam2.stop()
+    #         return arr
+    picam2.configure(picam2.create_preview_configuration({"format": "RGB888"}))
+    min_exp, max_exp, default_exp = picam2.camera_controls["AfPause"]
+
+    name = "Test"
+    photo_name = img_gen(name)
+        
+    picam2.start()
+
+    image = picam2.capture_image("main")
+    # arr = picam2.capture_array("main")
+    image.save(photo_name)
+    git_push()
+    print("picture done")
+    picam2.stop()
+        # return arr
             
             
 
@@ -200,24 +214,25 @@ def compare(before, after):
     return result
 
 def main():
-    Stop = 0
-    while True:
-        if Stop == 3:
-            break
-        image_1 = take_photo()
+    # Stop = 0
+    # while True:
+    #     if Stop == 3:
+    #         break
+    #     image_1 = take_photo()
 
-        processed_1 = process_image(image_1)
+    #     processed_1 = process_image(image_1)
 
-        print(processed_1)
+    #     print(processed_1)
 
-        arr_1 = list(processed_1.values())
+    #     arr_1 = list(processed_1.values())
 
-        image_1_black = detect_difference_one(arr_1)
+    #     image_1_black = detect_difference_one(arr_1)
 
-        print(image_1_black)
+    #     print(image_1_black)
 
-        Stop+=1
-        time.sleep(1)
+    #     Stop+=1
+    #     time.sleep(1)
+    image_1 = take_photo() #taking a picture TEST
 
         
     # image_2 = take_photo()
