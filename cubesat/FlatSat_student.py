@@ -8,6 +8,8 @@ from adafruit_lis3mdl import LIS3MDL
 from picamera2 import Picamera2
 from git import Repo
 
+# Hello my name is Terry
+
 # Constants
 THRESHOLD = 11  # Shake detection threshold
 REPO_PATH = "/home/cubegeeks/cubegeeks"
@@ -63,7 +65,7 @@ def classify_red_areas(image_width, image_height, x_coords, y_coords):
     center_x, center_y = image_width // 2, image_height // 2
 
     for x, y in zip(x_coords, y_coords):
-        dx, dy = x - center_x, center_y - y  # Invert y-axis since (0,0) is top-left
+        dx, dy = x - center_x, center_y - y  
 
         angle = np.arctan2(dy, dx) * (180 / np.pi)
 
@@ -93,7 +95,7 @@ def take_photo():
         magnitude = (accel_x**2 + accel_y**2 + accel_z**2) ** 0.5
 
         if magnitude > THRESHOLD:
-            print("Shake detected! Taking photo... " + str(magnitude))
+            print("Shake detected! Taking photo." + str(magnitude))
 
             picam2.configure(picam2.create_preview_configuration({"format": "RGB888"}))
             picam2.start()
@@ -120,7 +122,7 @@ def take_photo():
             git_push()
             return
 def main():
-    print("IMU Shake Detection Running...")
+    print("IMU Shake Detection")
     take_photo()
 
 if __name__ == "__main__":
