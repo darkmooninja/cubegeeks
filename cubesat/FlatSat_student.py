@@ -24,7 +24,7 @@ from git import Repo
 from picamera2 import Picamera2
 
 # VARIABLES
-THRESHOLD = 8  # Acceleration threshold for detecting a shake
+THRESHOLD = 20  # Acceleration threshold for detecting a shake
 REPO_PATH = "/home/cubegeeks/cubegeeks"  # Your GitHub repo path
 FOLDER_PATH = "/cubesat"  # Folder path for storing images
 
@@ -67,20 +67,20 @@ def take_photo():
         if magnitude > THRESHOLD:
             print("SHAKE DETECTED! Capturing photo...")
             
-            name = "Test"
-            photo_name = img_gen(name)
+        #     name = "Test"
+        #     photo_name = img_gen(name)
             
-            picam2.configure(picam2.create_still_configuration())
-            picam2.start()
-            time.sleep(1)  # Allow camera to adjust exposure
-            image = picam2.capture_image()
-            image.save(photo_name)
-            picam2.stop()
+        #     picam2.configure(picam2.create_still_configuration())
+        #     picam2.start()
+        #     time.sleep(1)  # Allow camera to adjust exposure
+        #     image = picam2.capture_image()
+        #     image.save(photo_name)
+        #     picam2.stop()
             
-            print(f"Photo saved: {photo_name}")
-            git_push()
+        #     print(f"Photo saved: {photo_name}")
+        #     git_push()
             
-            time.sleep(2)  # Prevent multiple triggers in quick succession
+        #     time.sleep(2)  # Prevent multiple triggers in quick succession
 
 def main():
     print("IMU Shake Detection Running...")
