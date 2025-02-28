@@ -9,7 +9,7 @@ from picamera2 import Picamera2
 from git import Repo
 
 # Constants
-THRESHOLD = 8  # Shake detection threshold
+THRESHOLD = 11  # Shake detection threshold
 REPO_PATH = "/home/cubegeeks/cubegeeks"
 FOLDER_PATH = "/cubesat"
 
@@ -93,7 +93,7 @@ def take_photo():
         magnitude = (accel_x**2 + accel_y**2 + accel_z**2) ** 0.5
 
         if magnitude > THRESHOLD:
-            print("Shake detected! Taking photo...")
+            print("Shake detected! Taking photo... " + str(magnitude))
 
             picam2.configure(picam2.create_preview_configuration({"format": "RGB888"}))
             picam2.start()
