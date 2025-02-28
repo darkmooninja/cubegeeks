@@ -63,7 +63,7 @@ def take_photo():
     while True:
         accelx, accely, accelz = accel_gyro.acceleration
         magnitude = (accelx ** 2 + accely ** 2 + accelz ** 2) ** 0.5
-        
+        print(magnitude + "hello world!")
         if magnitude > THRESHOLD:
             print("SHAKE DETECTED! Capturing photo...")
             
