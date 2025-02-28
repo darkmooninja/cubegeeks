@@ -122,3 +122,6 @@ def take_photo():
 def main():
     print("IMU Shake Detection Running...")
     take_photo()
+
+if __name__ == "__main__":
+    main()
