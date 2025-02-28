@@ -119,3 +119,6 @@ def take_photo():
             print(f"Processed image saved: {filename}")
             git_push()
             return
+def main():
+    print("IMU Shake Detection Running...")
+    take_photo()
