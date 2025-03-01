@@ -97,7 +97,7 @@ def take_photo(num):
         key = cv2.waitKey(1) & 0xFF
 
 
-        user_input = input()
+        user_input = input("Enter Space")
         if magnitude > THRESHOLD or user_input == "":
             print("Shake detected! Taking photo." + str(magnitude))
 
