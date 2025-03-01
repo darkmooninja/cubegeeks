@@ -94,7 +94,9 @@ def take_photo(num):
         accel_x, accel_y, accel_z = accel_gyro.acceleration
         magnitude = (accel_x**2 + accel_y**2 + accel_z**2) ** 0.5
 
-        if magnitude > THRESHOLD or keyboard.is_pressed("space"):
+        key = cv2.waitKey(1) & 0xFF
+
+        if magnitude > THRESHOLD or key == ord(' '):
             print("Shake detected! Taking photo." + str(magnitude))
 
             picam2.configure(picam2.create_preview_configuration({"format": "RGB888"}))
