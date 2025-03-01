@@ -96,7 +96,9 @@ def take_photo(num):
 
         key = cv2.waitKey(1) & 0xFF
 
-        if magnitude > THRESHOLD or key == ord(' '):
+
+        user_input = input()
+        if magnitude > THRESHOLD or user_input == "":
             print("Shake detected! Taking photo." + str(magnitude))
 
             picam2.configure(picam2.create_preview_configuration({"format": "RGB888"}))
