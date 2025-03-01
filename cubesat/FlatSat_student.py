@@ -10,7 +10,7 @@ from git import Repo
 
 
 # Constants
-THRESHOLD = 11  # Shake detection threshold
+THRESHOLD = 12  # Shake detection threshold
 REPO_PATH = "/home/cubegeeks/cubegeeks"
 FOLDER_PATH = "/cubesat"
 
@@ -115,7 +115,7 @@ def take_photo(num):
             print("Red pixel distribution:", red_directions)
 
             filename = img_gen("Shake")
-            cv2.imwrite(filename.replace(".jpg", "_" + num + ".jpg"), red_mask)
+            cv2.imwrite(filename.replace(".jpg", "_" + str(num) + ".jpg"), red_mask)
 
             print(f"Processed image saved: {filename}")
             
