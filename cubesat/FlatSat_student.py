@@ -8,7 +8,6 @@ from adafruit_lis3mdl import LIS3MDL
 from picamera2 import Picamera2
 from git import Repo
 
-# Hello my name is Terry
 
 # Constants
 THRESHOLD = 11  # Shake detection threshold
@@ -88,7 +87,7 @@ def classify_red_areas(image_width, image_height, x_coords, y_coords):
 
     return directions
 
-def take_photo():
+def take_photo(num):
     """Detects shake, captures & processes image, classifies red pixels in 8U."""
     while True:
         accel_x, accel_y, accel_z = accel_gyro.acceleration
@@ -116,14 +115,16 @@ def take_photo():
             print("Red pixel distribution:", red_directions)
 
             filename = img_gen("Shake")
-            cv2.imwrite(filename.replace(".jpg", "_red.jpg"), red_mask)
+            cv2.imwrite(filename.replace(".jpg", "_" + num + ".jpg"), red_mask)
 
             print(f"Processed image saved: {filename}")
-            git_push()
+            
             return
 def main():
     print("IMU Shake Detection")
-    take_photo()
+    for i in range(2):
+        take_photo(i+1)
+    git_push()
 
 if __name__ == "__main__":
     main()
