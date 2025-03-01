@@ -133,9 +133,9 @@ def take_photo(num):
             
             return
 def main():
-    for i in range(2):
+    for i in range(5):
         print("IMU Shake Detection Started")
-        time.sleep(2)
+        time.sleep(1)
         take_photo(i+1)
     git_push()
 
