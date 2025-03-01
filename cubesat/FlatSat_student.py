@@ -104,6 +104,13 @@ def take_photo(num):
             image_cv = np.array(image)
             image_cv = cv2.cvtColor(image_cv, cv2.COLOR_RGB2BGR)
 
+            filename = img_gen("Color")
+            original_filename = filename.replace(".jpg", "_" + str(num) + "_og.jpg")
+
+            # Save the original image
+            cv2.imwrite(original_filename, image_cv)
+            print(f"Original image saved: {original_filename}")
+
             red_mask, x_coords, y_coords = detect_red_areas(image_cv)
 
             # Get image dimensions
@@ -114,15 +121,16 @@ def take_photo(num):
 
             print("Red pixel distribution:", red_directions)
 
-            filename = img_gen("Shake")
+            filename = img_gen("Red")
             cv2.imwrite(filename.replace(".jpg", "_" + str(num) + ".jpg"), red_mask)
 
             print(f"Processed image saved: {filename}")
             
             return
 def main():
-    print("IMU Shake Detection")
     for i in range(2):
+        print("IMU Shake Detection Started")
+        time.sleep(2)
         take_photo(i+1)
     git_push()
 
