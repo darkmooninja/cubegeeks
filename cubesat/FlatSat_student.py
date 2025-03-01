@@ -2,6 +2,7 @@ import time
 import cv2
 import numpy as np
 import board
+import keyboard
 from PIL import Image
 from adafruit_lsm6ds.lsm6dsox import LSM6DSOX as LSM6DS
 from adafruit_lis3mdl import LIS3MDL
@@ -93,7 +94,7 @@ def take_photo(num):
         accel_x, accel_y, accel_z = accel_gyro.acceleration
         magnitude = (accel_x**2 + accel_y**2 + accel_z**2) ** 0.5
 
-        if magnitude > THRESHOLD:
+        if magnitude > THRESHOLD or keyboard.is_pressed("space"):
             print("Shake detected! Taking photo." + str(magnitude))
 
             picam2.configure(picam2.create_preview_configuration({"format": "RGB888"}))
